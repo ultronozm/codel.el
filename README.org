@@ -1,0 +1,23 @@
+#+TITLE: codel.el: some llm tools
+#+author: Paul D. Nelson
+* Overview
+=codel= (pronounced like the verb "coddle", a synonym of "pamper") is a a collection of llm tools for use with emacs.
+
+This repository is intended as a way for me to share tools I'm experimenting with.  Eventually (when I have the time and the tools reach a sufficient level of polish), I intend to PR them to https://github.com/skissue/llm-tool-collection.
+
+* Background on tool use in Emacs
+
+See
+- https://www.reddit.com/r/emacs/comments/1jb6xtb/gptel_098_released_tooluse_support_for_reasoning/
+- https://github.com/karthink/gptel?tab=readme-ov-file#tool-use-experimental
+- https://github.com/karthink/gptel/issues/514
+- https://github.com/karthink/gptel/releases/tag/v0.9.8
+- https://github.com/ahyatt/llm/discussions/124
+
+* Setup
+
+You'll need some Emacs package for working with LLM's that supports tool use.  [[https://github.com/karthink/gptel][gptel]] is a popular option.  I mostly use my personal package [[https://github.com/ultronozm/ai-org-chat.el][ai-org-chat]], which supports tool use via the [[https://github.com/ahyatt/llm][llm]] library.
+
+If you're using =gptel=, then you can register the tools provided by this package via =M-x codel-setup=gptel=.
+
+With =ai-org-chat=, use =M-x codel-setup-ai-org-chat=.
