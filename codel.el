@@ -143,6 +143,32 @@
     (insert content)
     (format "Buffer replaced: %s" buffer-name)))
 
+(defun codel-list-buffers ()
+  "Return a list of active buffers that a user might care about.
+Excludes buffers that start with spaces and internal buffers."
+  (let* ((all-buffers (buffer-list))
+         (user-buffers (seq-filter
+                        (lambda (buf)
+                          (let ((buf-name (buffer-name buf)))
+                            (and (not (string-prefix-p " " buf-name))
+                                 (not (string-prefix-p "*" buf-name))
+                                 (not (eq buf (current-buffer))))))
+                        all-buffers))
+         (sorted-buffers (sort user-buffers
+                               (lambda (a b)
+                                 (string< (buffer-name a)
+                                          (buffer-name b))))))
+    (mapconcat (lambda (buf)
+                 (let ((buf-name (buffer-name buf))
+                       (file-name (or (buffer-file-name buf) "")))
+                   (format "%s%s"
+                           buf-name
+                           (if (string-empty-p file-name)
+                               ""
+                             (format " (%s)" file-name)))))
+               sorted-buffers
+               "\n")))
+
 (defvar codel-tools
   `((:name "Bash"
            :function ,#'codel-bash
@@ -273,7 +299,12 @@
                   (:name "content"
                          :type string
                          :description "Content to write to the buffer"
-                         :required t)))))
+                         :required t)))
+
+    (:name "ListBuffers"
+           :function ,#'codel-list-buffers
+           :description "Lists active buffers that a user might care about"
+           :args ())))
 
 ;;;###autoload
 (defun codel-setup-gptel ()
