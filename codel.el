@@ -110,13 +110,17 @@
     (format "File replaced: %s" file-path)))
 
 (defun codel-view-buffer (buffer-name &optional limit offset)
-  "View contents of BUFFER-NAME with optional LIMIT and OFFSET."
+  "View contents of BUFFER-NAME with optional LIMIT and OFFSET.
+OFFSET specifies the starting line (0-based).
+LIMIT specifies the maximum number of lines to return."
   (with-current-buffer buffer-name
     (let* ((lines (split-string (buffer-string) "\n"))
-           (start (or offset 0))
-           (end (if limit (min (+ start limit) (length lines)) (length lines)))
+           (total-lines (length lines))
+           (start (min (or offset 0) total-lines))
+           (end (min (+ start (or limit total-lines)) total-lines))
            (selected-lines (seq-subseq lines start end)))
       (string-join selected-lines "\n"))))
+
 
 (defun codel-edit-buffer (buffer-name old-string new-string)
   "In BUFFER-NAME, replace OLD-STRING with NEW-STRING."
