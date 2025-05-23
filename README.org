@@ -1,5 +1,9 @@
 #+TITLE: codel.el: some llm tools
 #+author: Paul D. Nelson
+
+* Notice
+The tools in this package have polished a bit and submitted in a [[https://github.com/skissue/llm-tool-collection/pull/4][PR]] to [[https://github.com/skissue/llm-tool-collection][llm-tool-collection]], where future development will presumably take place.  I'll leave this repo here for now, but might eventually delete it.
+
 * Overview
 =codel= (pronounced like the verb "coddle", a synonym of "pamper") is a a collection of llm tools for use with emacs.
 
