@@ -20,6 +20,9 @@ See
 
 * Setup
 
+Install =codel= from this repository with your preferred package manager, or
+place =codel.el= on your =load-path= and require it.
+
 You'll need some Emacs package for working with LLM's that supports tool use.  [[https://github.com/karthink/gptel][gptel]] is a popular option.  I mostly use my personal package [[https://github.com/ultronozm/ai-org-chat.el][ai-org-chat]], which supports tool use via the [[https://github.com/ahyatt/llm][llm]] library.
 
 If you're using =gptel=, then you can register the tools provided by this package via =M-x codel-setup=gptel=.
